@@ -14,10 +14,10 @@ using TechTalk.SpecFlow.Assist;
 namespace RestSharpDemo.Steps
 {
     [Binding]
-    public class GetPostsSteps
+    public class ApiTestStepDefinition
     {
         private Settings _settings;
-        public GetPostsSteps(Settings settings)
+        public ApiTestStepDefinition(Settings settings)
         {
             _settings = settings;
         }

@@ -24,7 +24,7 @@ namespace RestSharpDemo.Features
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "PostProfile.feature"
+#line 1 "PostReqests.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -70,11 +70,11 @@ namespace RestSharpDemo.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify post operation")]
+        [NUnit.Framework.DescriptionAttribute("Verify post operation 1")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void VerifyPostOperation()
+        public virtual void VerifyPostOperation1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify post operation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify post operation 1", null, new string[] {
                         "mytag"});
 #line 4
 this.ScenarioInitialize(scenarioInfo);
@@ -89,6 +89,29 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
  testRunner.Given("I perform post operation \"/api/users\" with body", ((string)(null)), table1, "Given ");
 #line 8
+ testRunner.Then("I should see the status code as \"201\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify post operation 2")]
+        public virtual void VerifyPostOperation2()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify post operation 2", null, ((string[])(null)));
+#line 10
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "job"});
+            table2.AddRow(new string[] {
+                        "vishal",
+                        "project manager"});
+#line 11
+ testRunner.Given("I perform post operation \"/api/users\" with body", ((string)(null)), table2, "Given ");
+#line 14
  testRunner.Then("I should see the status code as \"201\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
