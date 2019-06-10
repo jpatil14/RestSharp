@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace RestSharpDemo.Steps
 {
@@ -24,8 +25,26 @@ namespace RestSharpDemo.Steps
         [Given(@"I perform GET operation for ""(.*)""")]
         public void GivenIPerformGETOperationFor(string url)
         {
-            _settings.Request = new RestRequest(url,Method.GET);
+            _settings.Request = new RestRequest(url, Method.GET);
         }
+
+        [Given(@"I perform post operation ""(.*)"" with body")]
+        public void GivenIPerformPostOperationWithBody(string url, Table table)
+        {
+            dynamic data = table.CreateDynamicInstance();
+            _settings.Request = new RestRequest(url, Method.POST);
+            _settings.Request.RequestFormat = DataFormat.Json;
+            _settings.Request.AddBody(new { name = data.name.ToString(), job = data.job.ToString() });
+            _settings.Response = _settings.RestClient.ExecuteAsyncRequest<Posts>(_settings.Request).GetAwaiter().GetResult();
+
+        }
+
+        [Then(@"I should see the status code as ""(.*)""")]
+        public void ThenIShouldSeeTheStatusCodeAs(string statusCode)
+        {
+            Assert.That(_settings.Response.GetResponseStatusCode(), Is.EqualTo(statusCode), "Expected status code is " + statusCode + ".However Actual is " + _settings.Response.GetResponseStatusCode());
+        }
+
 
         [Given(@"I perform operation for post ""(.*)""")]
         public void GivenIPerformOperationForPost(int id)

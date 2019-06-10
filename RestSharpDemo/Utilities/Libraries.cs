@@ -4,6 +4,7 @@ using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,9 +33,21 @@ namespace RestSharpDemo.Utilities
             return JSONObj;
         }
 
+        public static string GetResponseStatusCode(this IRestResponse restResponse)
+        {
+            HttpStatusCode statusCode = restResponse.StatusCode;
+            int numericStatusCode = (int)statusCode;
+            return numericStatusCode.ToString();
+        }
+
         public static string GetResponseObject(this IRestResponse response,string responseObject)
         {
+            
             var obs = JObject.Parse(response.Content);
+            //foreach (JProperty child in obs.SelectToken("data").Children())
+            //{
+
+            //}
             return obs.SelectToken("data").SelectToken(responseObject).ToString();
         }
 

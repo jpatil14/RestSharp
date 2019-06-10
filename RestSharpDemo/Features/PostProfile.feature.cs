@@ -76,7 +76,7 @@ namespace RestSharpDemo.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify post operation", null, new string[] {
                         "mytag"});
-#line 5
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
@@ -86,10 +86,10 @@ this.ScenarioInitialize(scenarioInfo);
             table1.AddRow(new string[] {
                         "jatin",
                         "test analyst"});
-#line 6
+#line 5
  testRunner.Given("I perform post operation \"/api/users\" with body", ((string)(null)), table1, "Given ");
-#line 9
- testRunner.Then("I should see \"name\" as \"jatin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.Then("I should see the status code as \"201\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
