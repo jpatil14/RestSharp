@@ -27,7 +27,7 @@ namespace RestSharpDemo
             //var statuscode = restResponse.GetResponseStatusCode();
 
             var client = new RestClient("https://oms-dev-dv1.plt-l-dev-uks-ase.azure.schroders.com/api/InspectAladdinJson");
-            var request = new RestRequest(Method.GET);
+            var request = new RestRequest(Method.POST);
             //var file = @"TestData\TestData.json";
 
             //request.RequestFormat = DataFormat.Json;
