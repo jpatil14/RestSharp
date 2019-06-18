@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: Parallelizable(ParallelScope.Fixtures)]
+//[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 [assembly: ComVisible(false)]
 

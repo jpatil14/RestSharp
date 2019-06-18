@@ -18,8 +18,8 @@ namespace RestSharpDemo.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GetPosts")]
-    public partial class GetPostsFeature
+    [NUnit.Framework.DescriptionAttribute("Verify GET Operation")]
+    public partial class VerifyGETOperationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace RestSharpDemo.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetPosts", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Verify GET Operation", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,29 +80,13 @@ namespace RestSharpDemo.Features
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("I perform \"GET\" operation for \"/api/users?page={id}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I perform \"GET\" operation for \"/api/users?page={pageNo}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.When("I retrieve the contents for resource \"id\" with value \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I retrieve the contents for resource \"pageNo\" with value \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("I should see the \"email\" as \"eve.holt@reqres.in\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify tha emailid of user having id as 3")]
-        public virtual void VerifyThaEmailidOfUserHavingIdAs3()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify tha emailid of user having id as 3", null, ((string[])(null)));
-#line 13
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 14
- testRunner.Given("I perform \"GET\" operation for \"api/users/{id}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
- testRunner.When("I retrieve the contents for resource \"id\" with value \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
- testRunner.Then("I should see the \"email\" as \"emma.wong@reqres.in\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see the \"total_pages\" as \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.And("I should see first_name as \"Charles\" for id as \"5\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -112,60 +96,59 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void VerifyThaEmailidOfUserHavingIdAs4()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify tha emailid of user having id as 4", null, ((string[])(null)));
-#line 18
+#line 14
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 19
+#line 15
  testRunner.Given("I perform \"GET\" operation for \"api/users/{id}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 16
  testRunner.When("I retrieve the contents for resource \"id\" with value \"4\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
- testRunner.Then("I should see the \"email\" as \"eve.holt@reqres.in\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify put operation")]
-        public virtual void VerifyPutOperation()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify put operation", null, ((string[])(null)));
-#line 23
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 24
- testRunner.Given("I perform \"PUT\" operation for \"/api/users/{id}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "name",
-                        "job"});
+                        "id",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "avatar"});
             table1.AddRow(new string[] {
-                        "Vishal",
-                        "Manager"});
-#line 25
- testRunner.When("I update the below contents for \"id\" as \"2\"", ((string)(null)), table1, "When ");
-#line 28
- testRunner.Then("I should see the status code as \"200\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "4",
+                        "eve.holt@reqres.in",
+                        "Eve",
+                        "Holt",
+                        "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg"});
+#line 17
+ testRunner.Then("I should see below values in response body of data resource", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify post operation with examples")]
-        [NUnit.Framework.TestCaseAttribute("jatin", "test analyst", null)]
-        [NUnit.Framework.TestCaseAttribute("Vishal", "Manager", null)]
-        public virtual void VerifyPostOperationWithExamples(string name, string job, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Verify tha emailid of user having id as 5")]
+        public virtual void VerifyThaEmailidOfUserHavingIdAs5()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify post operation with examples", null, exampleTags);
-#line 30
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify tha emailid of user having id as 5", null, ((string[])(null)));
+#line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 31
- testRunner.Given("I perform \"POST\" operation for \"/api/users\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
- testRunner.When(string.Format("I post the contents as \'{0}\'\'{1}\'", name, job), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
- testRunner.Then("I should see the status code as \"201\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 22
+ testRunner.Given("I perform \"GET\" operation for \"api/users/{id}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 23
+ testRunner.When("I retrieve the contents for resource \"id\" with value \"5\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "id",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "avatar"});
+            table2.AddRow(new string[] {
+                        "5",
+                        "charles.morris@reqres.in",
+                        "Charles",
+                        "Morris",
+                        "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg"});
+#line 24
+ testRunner.Then("I should see below values in response body of data resource", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

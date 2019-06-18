@@ -104,13 +104,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Settings.cs" />
+    <Compile Include="Features\DeleteRequest.feature.cs">
+      <DependentUpon>DeleteRequest.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\PostRequests.feature.cs">
+      <DependentUpon>PostRequests.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Features\PutRequests.feature.cs">
+      <DependentUpon>PutRequests.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\GetRequests.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetRequests.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks\TestInitialize.cs" />
+    <Compile Include="Hooks\TestModel.cs" />
     <Compile Include="Model\Posts.cs" />
+    <Compile Include="Model\UserList.cs" />
     <Compile Include="Steps\CommonStepDefinition.cs" />
     <Compile Include="Steps\ApiTestStepDefinition.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -121,6 +138,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\DeleteRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PostRequests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PostRequests.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PutRequests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PutRequests.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\GetRequests.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetRequests.feature.cs</LastGenOutput>
@@ -133,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="extent-config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExtentReport\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

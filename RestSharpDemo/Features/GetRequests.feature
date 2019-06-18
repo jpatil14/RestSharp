@@ -1,4 +1,4 @@
-﻿Feature: GetPosts
+﻿Feature: Verify GET Operation
 
 #Background:
 #Given I authenticate the user with following details
@@ -6,33 +6,21 @@
 #		| testUser | testPassword |
 @mytag
 Scenario: Verify tha emailid of user having id as 2
-	Given I perform "GET" operation for "/api/users?page={id}"
-	When I retrieve the contents for resource "id" with value "2"
-	Then I should see the "email" as "eve.holt@reqres.in"
-
-Scenario: Verify tha emailid of user having id as 3
-	Given I perform "GET" operation for "api/users/{id}"
-	When I retrieve the contents for resource "id" with value "3"
-	Then I should see the "email" as "emma.wong@reqres.in"
+	Given I perform "GET" operation for "/api/users?page={pageNo}"
+	When I retrieve the contents for resource "pageNo" with value "2"
+	Then I should see the "total_pages" as "4"
+	And I should see first_name as "Charles" for id as "5"
 
 Scenario: Verify tha emailid of user having id as 4
 	Given I perform "GET" operation for "api/users/{id}"
 	When I retrieve the contents for resource "id" with value "4"
-	Then I should see the "email" as "eve.holt@reqres.in"
+	Then I should see below values in response body of data resource
+		| id | email              | first_name | last_name | avatar                                                              |
+		| 4  | eve.holt@reqres.in | Eve        | Holt      | https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg |
 
-Scenario: Verify put operation
-	Given I perform "PUT" operation for "/api/users/{id}"
-	When I update the below contents for "id" as "2"
-		| name   | job     |
-		| Vishal | Manager |
-	Then I should see the status code as "200"
-
-Scenario Outline: Verify post operation with examples
-	Given I perform "POST" operation for "/api/users"
-	When I post the contents as '<name>''<job>'
-	Then I should see the status code as "201"
-
-	Examples:
-		| name   | job          |
-		| jatin  | test analyst |
-		| Vishal | Manager      |
+Scenario: Verify tha emailid of user having id as 5
+	Given I perform "GET" operation for "api/users/{id}"
+	When I retrieve the contents for resource "id" with value "5"
+	Then I should see below values in response body of data resource
+		| id | email                    | first_name | last_name | avatar                                                             |
+		| 5  | charles.morris@reqres.in | Charles    | Morris    | https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg |

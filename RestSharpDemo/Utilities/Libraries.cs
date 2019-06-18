@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Deserializers;
 using System;
@@ -34,10 +35,36 @@ namespace RestSharpDemo.Utilities
             return await taskCompletionSource.Task;
         }
 
+        public static IRestResponse ExecuteRequestWithResponseTime(this RestClient client, IRestRequest request)
+        {
+            stopwatch.Start();
+            IRestResponse response = client.Execute(request);
+            stopwatch.Stop();
+            executionTimeInMS = stopwatch.Elapsed.TotalMilliseconds;
+            stopwatch.Reset();
+            return response;
+        }
+
+        public static IRestResponse ExecuteRequestWithResponseTime<T>(this RestClient client, IRestRequest request) where T : class, new()
+        {
+            stopwatch.Start();
+            IRestResponse response = client.Execute(request);
+            stopwatch.Stop();
+            executionTimeInMS = stopwatch.Elapsed.TotalSeconds;
+            stopwatch.Reset();
+            return response;
+        }
+
         public static Dictionary<string, string> DeserializeResponse(this IRestResponse restResponse)
         {
             var JSONObj = new JsonDeserializer().Deserialize<Dictionary<string, string>>(restResponse);
             return JSONObj;
+        }
+
+        public static T DeserializeResponseInGeneric<T>(this IRestResponse restResponse) where T : class, new()
+        {
+            var deserializeObj = JsonConvert.DeserializeObject<T>(restResponse.Content);
+            return (T)deserializeObj;
         }
 
         public static string GetResponseStatusCode(this IRestResponse restResponse)
@@ -47,31 +74,10 @@ namespace RestSharpDemo.Utilities
             return numericStatusCode.ToString();
         }
 
-        public static string GetResponseObject(this IRestResponse response,string responseObject)
+        public static string GetResponseObject(this IRestResponse response, string responseObject)
         {
-
-            //var jtoken = JToken.Parse(response.Content);
-            //jtoken.SelectToken(responseObject, false).ToString();
-            dynamic obs = JObject.Parse(response.Content);
-            foreach (var item in obs.data)
-            {
-                if (item.id == '4')
-                {
-                    Console.WriteLine(item.email);
-                }
-                //item.Value.ToString();
-            }
-            obs.SelectToken("data").Children().Count();
-            //foreach (IEnumerator<KeyValuePair<string,string>> property in obs.GetEnumerator())//SelectToken("data").Children()
-            //{
-            //    Console.WriteLine(property.Value);
-            //    foreach (JObject property1 in property.Descendants())
-            //    {
-            //        Console.WriteLine(property1.SelectToken(responseObject).ToString());
-            //    }
-            //}
-            return obs.SelectToken("data").SelectToken(responseObject).ToString();
+            var obs = JObject.Parse(response.Content);
+            return obs.GetValue(responseObject).ToString();
         }
-
     }
 }

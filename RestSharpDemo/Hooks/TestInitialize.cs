@@ -29,10 +29,13 @@ namespace RestSharpDemo.Hooks
         [BeforeTestRun]
         public static void InitializeAPIExtentReport()
         {
-            var htmlReporter = new ExtentHtmlReporter(@"C:\Users\patilja\VS Workspace\RestSharp\ExtentReport.html");
+            var htmlReporter = new ExtentHtmlReporter(ConfigurationManager.AppSettings["extentReportPath"].ToString());
             htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
+            htmlReporter.LoadConfig(ConfigurationManager.AppSettings["extentConfigPath"].ToString());
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
+            extent.AddSystemInfo("Environment", "SIT1");
+            extent.AddSystemInfo("Application", "Workspace Manager");
         }
 
         [AfterTestRun]
@@ -52,9 +55,6 @@ namespace RestSharpDemo.Hooks
         public void AddReportingSteps()
         {
             var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
-            //PropertyInfo pInfo = typeof(ScenarioContext).GetProperty("TestStatus",BindingFlags.Instance|BindingFlags.NonPublic);
-            //MethodInfo getter = pInfo.GetGetMethod(nonPublic: true);
-            //object TestResult = getter.Invoke(ScenarioContext.Current, null);
 
             if (ScenarioContext.Current.TestError == null)
             {
@@ -78,17 +78,6 @@ namespace RestSharpDemo.Hooks
                 else if (stepType.Equals("And"))
                     scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.InnerException);
             }
-            //if (TestResult.ToString() == "StepDefinitionPending")
-            //{
-            //    if (stepType.Equals("Given"))
-            //        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-            //    else if (stepType.Equals("When"))
-            //        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-            //    else if (stepType.Equals("Then"))
-            //        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-            //    else if (stepType.Equals("And"))
-            //        scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
-            //}
 
         }
 
@@ -101,9 +90,10 @@ namespace RestSharpDemo.Hooks
         }
 
         [AfterScenario]
-        public void DisplayAPIExecutionTime()
+        public void afterscenario()
         {
-            extent.AddSystemInfo(ScenarioContext.Current.ScenarioInfo.Title, Libraries.executionTimeInMS.ToString());
+            scenario.CreateNode<ResponseTime>("Response time in MS was " + Libraries.executionTimeInMS.ToString());
         }
+
     }
 }
