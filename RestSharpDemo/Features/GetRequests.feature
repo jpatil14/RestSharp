@@ -16,11 +16,11 @@ Scenario: Verify tha emailid of user having id as 4
 	When I retrieve the contents for resource "id" with value "4"
 	Then I should see below values in response body of data resource
 		| id | email              | first_name | last_name | avatar                                                              |
-		| 4  | eve.holt@reqres.in | Eve        | Holt      | https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg |
+		| 9  | eve.holt@reqres.in | Eve        | Holt      | https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg |
 
 Scenario: Verify tha emailid of user having id as 5
 	Given I perform "GET" operation for "api/users/{id}"
 	When I retrieve the contents for resource "id" with value "5"
 	Then I should see below values in response body of data resource
 		| id | email                    | first_name | last_name | avatar                                                             |
-		| 5  | charles.morris@reqres.in | Charles    | Morris    | https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg |
+		| 8  | charles.morris@reqres.in | Charles    | Morris    | https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg |

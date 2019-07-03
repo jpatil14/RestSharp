@@ -1,0 +1,68 @@
+﻿{
+  "team": "WST",
+  "searchIndex": {
+    "type": "searchIndexDocument",
+    "team": "WST",
+    "indexId": "FeatureDemo",
+    "accessPermissions": [
+      "*"
+    ],
+    "mnemonicText": "FD",
+    "mnemonicTooltip": "Feature Demo Test",
+    "mnemonicBackgroundHexString": "#FF4500",
+    "mnemonicForegroundHexString": "#FFFF00",
+    "searchItems": [
+      {
+        "key": "WeatherForecastGB",
+        "searchFields": [
+          "London Weather"
+        ],
+        "uri": null,
+        "targetId": "FeatureDemo.WeatherForecastView",
+        "moduleName": "Schroders.Workspace.FeatureDemoModule",
+        "isNotifiable": true,
+        "namedParameters": [
+          {
+            "name": "CityName",
+            "value": "London,GB"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "key": "WeatherForecastSY",
+        "searchFields": [
+          "Sydney Weather"
+        ],
+        "uri": null,
+        "targetId": "FeatureDemo.WeatherForecastView",
+        "moduleName": "Schroders.Workspace.FeatureDemoModule",
+        "isNotifiable": true,
+        "namedParameters": [
+          {
+            "name": "CityName",
+            "value": "Sydney,AU"
+          }
+        ],
+        "deleted": false
+      },
+      {
+        "key": "WeatherForecastNY",
+        "searchFields": [
+          "New York Weather"
+        ],
+        "uri": null,
+        "targetId": "FeatureDemo.WeatherForecastView",
+        "moduleName": "Schroders.Workspace.FeatureDemoModule",
+        "isNotifiable": true,
+        "namedParameters": [
+          {
+            "name": "CityName",
+            "value": "NewYork,US"
+          }
+        ],
+        "deleted": false
+      }
+    ]
+  }
+}

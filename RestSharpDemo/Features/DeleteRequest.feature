@@ -10,7 +10,7 @@ Scenario: Verify tha delete operation of user having id as 2
 
 Scenario: Verify tha delete operation of user having id as 3
 	When I retrieve the contents for resource "id" with value "3"
-	Then I should see the status code as "204"
+	Then I should see the status code as "205"
 
 Scenario: Verify tha delete operation of user having id as 4
 	When I retrieve the contents for resource "id" with value "4"

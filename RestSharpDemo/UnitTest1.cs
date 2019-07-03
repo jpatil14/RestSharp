@@ -36,9 +36,9 @@ namespace RestSharpDemo
             var restResponse = client.Execute(request);
             var statuscode = restResponse.GetResponseStatusCode();
 
-            //var desrialize = new JsonDeserializer();
-            //var output = desrialize.Deserialize<Dictionary<string, string>>(response);
-            //var result = output["name"];
+            var desrialize = new JsonDeserializer();
+            var output = desrialize.Deserialize<Dictionary<string, string>>(restResponse);
+            var result = output["name"];
             //Assert.AreEqual("Jatin",response.Data.name,"Post is not created with expected resource");
 
         }
@@ -48,13 +48,13 @@ namespace RestSharpDemo
             var client = new RestClient("https://reqres.in/api/users");
             var request = new RestRequest("posts", Method.POST);
             request.RequestFormat = DataFormat.Json;
-            request.AddBody(new Posts() { name = "Jatin", job = "test analyst", id = "90" });
+            // request.AddBody(new Posts() { name = "Jatin", job = "test analyst", id = "90" });
             //var response = client.Execute<Posts>(request);
-            var response = client.ExecutePostTaskAsync<Posts>(request).GetAwaiter().GetResult();
+            //  var response = client.ExecutePostTaskAsync<Posts>(request).GetAwaiter().GetResult();
             //var desrialize = new JsonDeserializer();
             //var output = desrialize.Deserialize<Dictionary<string, string>>(response);
             //var result = output["name"];
-            Assert.AreEqual("Jatin", response.Data.name, "Post is not created with expected resource");
+            //  Assert.AreEqual("Jatin", response.Data.name, "Post is not created with expected resource");
 
         }
 

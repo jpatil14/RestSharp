@@ -21,6 +21,15 @@ namespace RestSharpDemo.Steps
             _settings = settings;
         }
 
+        [Given(@"I set the base URL as ""(.*)"" with windows authentication")]
+        public void GivenISetTheBaseURLAs(string baseURL)
+        {
+            _settings.BaseUrl = new Uri(baseURL);
+            _settings.RestClient.BaseUrl = _settings.BaseUrl;
+            _settings.RestClient.Authenticator = new NtlmAuthenticator();
+        }
+
+
         [Given(@"I authenticate the user with following details")]
         public void GivenIAuthenticateTheUserWithFollowingDetails(Table table)
         {

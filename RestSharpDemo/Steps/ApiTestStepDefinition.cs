@@ -11,6 +11,7 @@ using RestSharpDemo.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace RestSharpDemo.Steps
             _settings = settings;
         }
 
-        [Given(@"I perform ""(.*)"" operation for ""(.*)""")]
+        [Given(@"I perform ""(.*)"" operation for endpoint ""(.*)""")]
         public void GivenIPerformOperationFor(string method, string url)
         {
             switch (method)
@@ -51,11 +52,12 @@ namespace RestSharpDemo.Steps
             }
         }
 
-        [When(@"I post the contents as '(.*)''(.*)'")]
-        public void GivenIPostTheContentsAs(string value1, string value2)
+        [When(@"I post below contents to remove the search index")]
+        public void WhenIPostBelowContentsToRemoveTheSearchIndex(Table table)
         {
+            dynamic data = table.CreateDynamicInstance();
             _settings.Request.RequestFormat = DataFormat.Json;
-            _settings.Request.AddBody(new { name = value1, job = value2 });
+            _settings.Request.AddBody(new { team = data.team.ToString(), indexId = data.indexId.ToString() });
             _settings.Response = _settings.RestClient.ExecuteRequestWithResponseTime(_settings.Request);
         }
 
@@ -66,6 +68,40 @@ namespace RestSharpDemo.Steps
             Assert.That(_settings.Response.GetResponseStatusCode(), Is.EqualTo(statusCode), "Expected status code is " + statusCode + ".However Actual is " + _settings.Response.GetResponseStatusCode());
         }
 
+        [Given(@"I add below parameters in URL and execute the request")]
+        public void GivenIAddBelowParametersInURL(Table table)
+        {
+            var dictionary = Libraries.ToDictionary(table);
+            _settings.Request.AddURLParameters(dictionary);
+            _settings.Response = _settings.RestClient.ExecuteRequestWithResponseTime(_settings.Request);
+        }
+
+
+        [Given(@"I post the contents from template ""(.*)""")]
+        public void GivenIPostTheContentsFromTemplate(string template)
+        {
+            var file = @"Template\" + template + ".json";
+            var jsonData = Newtonsoft.Json.JsonConvert.DeserializeObject(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, file)));
+            _settings.Request.JsonSerializer = new CustomSerilizer();
+            _settings.Request.AddJsonBody(jsonData);
+            _settings.Response = _settings.RestClient.ExecuteRequestWithResponseTime(_settings.Request);
+        }
+
+        [When(@"I execute the given ""(.*)"" request")]
+        public void WhenIExecuteTheGivenRequest(string httpMethod)
+        {
+            _settings.Request.RequestFormat = DataFormat.Json;
+            switch (httpMethod)
+            {
+                case "GET":
+                case "DELETE":
+                    _settings.Response = _settings.RestClient.ExecuteRequestWithResponseTime(_settings.Request);
+                    break;
+                default:
+                    Assert.IsFalse(true, "Given operation in step as " + httpMethod + " is not a valid method.Please Verify");
+                    break;
+            }
+        }
 
         [When(@"I update the below contents for ""(.*)"" as ""(.*)""")]
         public void GivenIUpdateTheBelowContentsForAs(string resource, int resouceID, Table table)

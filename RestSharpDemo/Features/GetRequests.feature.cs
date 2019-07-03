@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "last_name",
                         "avatar"});
             table1.AddRow(new string[] {
-                        "4",
+                        "9",
                         "eve.holt@reqres.in",
                         "Eve",
                         "Holt",
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "last_name",
                         "avatar"});
             table2.AddRow(new string[] {
-                        "5",
+                        "8",
                         "charles.morris@reqres.in",
                         "Charles",
                         "Morris",

@@ -109,8 +109,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Features\PostRequests.feature.cs">
-      <DependentUpon>PostRequests.feature</DependentUpon>
+    <Compile Include="Features\SearchService.feature.cs">
+      <DependentUpon>SearchService.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -125,8 +125,10 @@
       <DependentUpon>GetRequests.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks\TestInitialize.cs" />
-    <Compile Include="Hooks\TestModel.cs" />
-    <Compile Include="Model\Posts.cs" />
+    <Compile Include="Others\ResponseTimeNode.cs" />
+    <Compile Include="Others\CustomSerilizer.cs" />
+    <Compile Include="Model\FeatureDemoSearchIndex.cs" />
+    <Compile Include="Model\AddViewedSearchItems.cs" />
     <Compile Include="Model\UserList.cs" />
     <Compile Include="Steps\CommonStepDefinition.cs" />
     <Compile Include="Steps\ApiTestStepDefinition.cs">
@@ -142,9 +144,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DeleteRequest.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\PostRequests.feature">
+    <None Include="Features\SearchService.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostRequests.feature.cs</LastGenOutput>
+      <LastGenOutput>SearchService.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\PutRequests.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -156,7 +158,13 @@
     </None>
     <None Include="license" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="TestData\TestData.json">
+    <EmbeddedResource Include="Template\AddViewedSearchItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\FeatureDemoSearchIndex.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\MergeFeatureDemoSearchIndex.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

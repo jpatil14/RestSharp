@@ -1,0 +1,10 @@
+﻿{
+  "team": "WST",
+  "searchTerms": [
+    {
+      "indexId": "FeatureDemo",
+      "key": "WeatherForecastJ",
+      "value": "Sydney Weather"
+    }
+  ]
+}

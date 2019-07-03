@@ -110,7 +110,7 @@ this.FeatureBackground();
 #line 12
  testRunner.When("I retrieve the contents for resource \"id\" with value \"3\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("I should see the status code as \"204\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see the status code as \"205\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

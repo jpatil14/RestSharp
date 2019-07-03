@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace RestSharpDemo.Utilities
 {
@@ -33,6 +34,14 @@ namespace RestSharpDemo.Utilities
             executionTimeInMS = stopwatch.Elapsed.TotalSeconds;
             stopwatch.Reset();
             return await taskCompletionSource.Task;
+        }
+
+        public static void AddURLParameters(this IRestRequest request, Dictionary<string, string> dictionary)
+        {
+            foreach (KeyValuePair<string, string> param in dictionary)
+            {
+                request.AddUrlSegment(param.Key, param.Value);
+            }
         }
 
         public static IRestResponse ExecuteRequestWithResponseTime(this RestClient client, IRestRequest request)
@@ -78,6 +87,16 @@ namespace RestSharpDemo.Utilities
         {
             var obs = JObject.Parse(response.Content);
             return obs.GetValue(responseObject).ToString();
+        }
+
+        public static Dictionary<string, string> ToDictionary(Table table)
+        {
+            var dictionary = new Dictionary<string, string>();
+            foreach (var row in table.Rows)
+            {
+                dictionary.Add(row[0], row[1]);
+            }
+            return dictionary;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using RestSharp.Authenticators;
 using RestSharpDemo.Base;
+using RestSharpDemo.ExtentReportNodes;
 using RestSharpDemo.Utilities;
 using System;
 using System.Collections.Generic;
@@ -85,8 +87,7 @@ namespace RestSharpDemo.Hooks
         public void TestSetup()
         {
             scenario = featureName.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
-            _settings.BaseUrl = new Uri(ConfigurationManager.AppSettings["baseUrl"].ToString());
-            _settings.RestClient.BaseUrl = _settings.BaseUrl;
+
         }
 
         [AfterScenario]

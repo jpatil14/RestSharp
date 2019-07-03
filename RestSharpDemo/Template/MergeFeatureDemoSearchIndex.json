@@ -1,0 +1,34 @@
+﻿{
+  "team": "WST",
+  "searchIndex": {
+    "type": "searchIndexDocument",
+    "team": "WST",
+    "indexId": "FeatureDemo",
+    "accessPermissions": [
+      "*"
+    ],
+    "mnemonicText": "FD",
+    "mnemonicTooltip": "Feature Demo Test",
+    "mnemonicBackgroundHexString": "#FF4500",
+    "mnemonicForegroundHexString": "#FFFF00",
+    "searchItems": [
+      {
+        "key": "WeatherForecastJ",
+        "searchFields": [
+          "Japan Weather"
+        ],
+        "uri": null,
+        "targetId": "FeatureDemo.WeatherForecastView",
+        "moduleName": "Schroders.Workspace.FeatureDemoModule",
+        "isNotifiable": true,
+        "namedParameters": [
+          {
+            "name": "CityName",
+            "value": "Japan,Japan"
+          }
+        ],
+        "deleted": false
+      }
+    ]
+  }
+}
